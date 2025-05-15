@@ -3,6 +3,7 @@ package com.betrybe.agrix.service;
 import com.betrybe.agrix.entity.Person;
 import com.betrybe.agrix.repository.PersonRepository;
 import com.betrybe.agrix.service.exceptions.PersonNotFoundException;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -68,5 +69,44 @@ public class PersonService implements UserDetailsService {
   public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
     return personRepository.findByUsername(username)
         .orElseThrow(() -> new UsernameNotFoundException(username));
+  }
+
+  /**
+   * List all list.
+   *
+   * @return the list
+   */
+  public List<Person> listAll() {
+    return personRepository.findAll();
+  }
+
+  /**
+   * Update person.
+   *
+   * @param id     the id
+   * @param person the person
+   * @return the person
+   * @throws PersonNotFoundException the person not found exception
+   */
+  public Person update(Long id, Person person) throws PersonNotFoundException {
+    Person personFromDb = getPersonById(id);
+    personFromDb.setUsername(person.getUsername());
+    personFromDb.setPassword(person.getPassword());
+
+    return personRepository.save(personFromDb);
+  }
+
+  /**
+   * Delete person.
+   *
+   * @param id the id
+   * @return the person
+   * @throws PersonNotFoundException the person not found exception
+   */
+  public Person delete(Long id) throws PersonNotFoundException {
+    Person person = getPersonById(id);
+    personRepository.deleteById(id);
+
+    return person;
   }
 }

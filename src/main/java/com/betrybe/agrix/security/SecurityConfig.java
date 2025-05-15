@@ -55,6 +55,8 @@ public class SecurityConfig {
         .authorizeHttpRequests(authorize -> authorize
             .requestMatchers(HttpMethod.POST, "/persons").permitAll()
             .requestMatchers(HttpMethod.POST, "/auth/login").permitAll()
+            .requestMatchers(HttpMethod.GET, "/swagger-ui/**").permitAll() // acesso API via Swagger
+            .requestMatchers(HttpMethod.GET, "/v3/**").permitAll() // acesso API via Swagger
             .anyRequest().authenticated()
         )
         .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
