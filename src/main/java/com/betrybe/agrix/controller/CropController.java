@@ -11,6 +11,7 @@ import java.time.LocalDate;
 import java.util.List;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -42,6 +43,7 @@ public class CropController {
    * @return the all crops
    */
   @GetMapping
+  @Secured({"ROLE_MANAGER", "ROLE_ADMIN"})
   public List<CropDto> getAllCrops() {
     List<Crop> allCrops = cropService.findAll();
 

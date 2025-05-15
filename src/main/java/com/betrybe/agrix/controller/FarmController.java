@@ -10,6 +10,7 @@ import com.betrybe.agrix.service.FarmService;
 import com.betrybe.agrix.service.exceptions.FarmNotFoundException;
 import java.util.List;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -53,6 +54,7 @@ public class FarmController {
    * @return the list
    */
   @GetMapping
+  @Secured({"ROLE_ADMIN", "ROLE_USER", "ROLE_MANAGER"})
   public List<FarmDto> showAllFarms() {
     List<Farm> allFarms = farmService.findAll();
 
