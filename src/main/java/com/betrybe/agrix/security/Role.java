@@ -1,8 +1,12 @@
-package com.betrybe.agrix.ebytr.staff.security;
+package com.betrybe.agrix.security;
+
+import lombok.Getter;
+import lombok.Setter;
 
 /**
  * Enum representing a Role.
  */
+@Getter
 public enum Role {
   ADMIN("ROLE_ADMIN"),
   MANAGER("ROLE_MANAGER"),
@@ -14,7 +18,4 @@ public enum Role {
     this.name = name;
   }
 
-  public String getName() {
-    return name;
-  }
 }

@@ -1,7 +1,7 @@
-package com.betrybe.agrix.ebytr.staff.entity;
+package com.betrybe.agrix.entity;
 
 
-import com.betrybe.agrix.ebytr.staff.security.Role;
+import com.betrybe.agrix.security.Role;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -32,19 +32,16 @@ public class Person {
 
   private Role role;
 
-  public void setId(Long id) {
-    this.id = id;
-  }
-
-  public void setUsername(String username) {
+  /**
+   * Instantiates a new Person.
+   *
+   * @param username the username
+   * @param password the password
+   * @param role     the role
+   */
+  public Person(String username, String password, Role role) {
     this.username = username;
-  }
-
-  public void setPassword(String password) {
     this.password = password;
-  }
-
-  public void setRole(Role role) {
     this.role = role;
   }
 
