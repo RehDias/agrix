@@ -1,9 +1,11 @@
 services:
 
-  mysql:
-    image: mysql:8.0.32
+  postgresdb:
+    image: 'postgres:alpine'
     restart: always
-    ports:
-      - "3306:3306"
     environment:
-      MYSQL_ROOT_PASSWORD: root
+      - 'POSTGRES_DB=project_team_db'
+      - 'POSTGRES_PASSWORD=postgres'
+      - 'POSTGRES_USER=postgres'
+    ports:
+      - '5432:5432'
